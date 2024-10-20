@@ -15,6 +15,6 @@ def call_api(query):
 
     print(response.content)
 
-# query = "quelle est la longueur de 'déclinaison'"
+# query = "envoie un message à Cyril Thielemans pour dire bonjour"
 
 # call_api(query)

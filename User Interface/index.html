@@ -3,46 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Run Agent UI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Event Companion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #f3ec78, #af4261);
+            background: linear-gradient(135deg, #f9f9f9, #e6e6e6);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             margin: 0;
-            color: #fff;
+            color: #333;
         }
         .container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
         h1 {
             margin-bottom: 20px;
             text-align: center;
-            font-weight: 700;
+            font-weight: 500;
+            font-size: 1em;
+            color: #333;
+        }
+        h1 .highlight {
+            display: block;
+            margin-top: 10px;
+            font-weight: 300;
+            font-size: 1.2em;
+            color: #555;
         }
         label {
-            font-size: 1.2em;
+            font-size: 1em;
+            color: #555;
         }
         input[type="text"] {
             width: 100%;
+            max-width: 400px;
+            height: 50px;
+            overflow: auto;
             padding: 10px;
             margin: 10px 0;
-            border: none;
+            border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1em;
+            resize: none;
         }
         button {
-            background-color: #af4261;
+            background-color: #007bff;
             color: #fff;
             border: none;
             padding: 12px 25px;
@@ -52,17 +66,19 @@
             transition: all 0.3s ease;
         }
         button:hover {
-            background-color: #f3ec78;
-            color: #af4261;
+            background-color: #0056b3;
         }
         #responseOutput {
             margin-top: 20px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.95);
             padding: 20px;
             border-radius: 10px;
             overflow: auto;
             font-size: 1em;
             max-height: 300px;
+            max-width: 600px;
+            width: 100%;
+            color: #333;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -100,9 +116,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>Run Agent API</h1>
+        <h1>Hi, I'm Elyn, your event companion.
+            <span class="highlight"><span style="font-size: 0.9em;">I can help with LinkedIn messages, emails, finding information, and adding contacts to the CRM.</span><br><span style="font-size: 0.9em;">How can I assist you?</span></span>
+        </h1>
         <label for="queryInput">Enter Query:</label>
-        <input type="text" id="queryInput" placeholder="Type your query here...">
+        <textarea id="queryInput" placeholder="Type your request here..." rows="4" style="width: 100%; max-width: 400px; overflow: auto; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 1em; resize: vertical;"></textarea>
         <button onclick="callAgentAPI()">Submit</button>
         <h3>Response:</h3>
         <pre id="responseOutput"></pre>

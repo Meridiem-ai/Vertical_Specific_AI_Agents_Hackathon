@@ -18,7 +18,6 @@ from Tools.linkedin_axon import send_linkedin_msg
 from Tools.web_search import web_search
 llm = llm_new()
 
-
 def run_agent(query,chat_history):
     tools = [add_contact,send_email,web_search,send_linkedin_msg]
 
@@ -66,7 +65,6 @@ def run_agent(query,chat_history):
 
 def main_(query):
     chat_history = []
-
     result = run_agent(query,chat_history)
     return result
 

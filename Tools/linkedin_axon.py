@@ -9,7 +9,7 @@ load_dotenv()
 
 # message = "Hello Cyril this is a test"
 
-#@tool
+@tool
 def send_linkedin_msg(person_name: str, message: str) -> int:
     """Sends a message to a person on LinkedIn and returns a status message.
 
@@ -68,4 +68,4 @@ def send_linkedin_msg(person_name: str, message: str) -> int:
     else:
         return "the message was not succesfully send, continue on"
     
-print(send_linkedin_msg("choucrout","sfqfdfs"))
+# print(send_linkedin_msg("choucrout","sfqfdfs"))
