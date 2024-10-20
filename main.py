@@ -16,13 +16,6 @@ from Tools.tool_template import get_word_length
 llm = llm_new()
 
 
-
-
-
-# list(agent_executor.stream({"input": "How many letters in the word eudca"}))
-
-
-
 def run_agent(query,chat_history):
     tools = [get_word_length]
 
@@ -62,13 +55,7 @@ def run_agent(query,chat_history):
 
     result = agent_executor.invoke({"input": query, "chat_history": chat_history})
     print(result)
-    # chat_history.extend(
-    #     [
-    #         HumanMessage(content=input1),
-    #         AIMessage(content=result["output"]),
-    #     ]
-    # )
-    # agent_executor.invoke({"input": "is that a real word?", "chat_history": chat_history})
+    return result["output"]
 
 
 
@@ -77,6 +64,9 @@ def run_agent(query,chat_history):
 def main_(query):
     chat_history = []
 
-    run_agent(query,chat_history)
+    result = run_agent(query,chat_history)
+    return result
+
+
 
 
