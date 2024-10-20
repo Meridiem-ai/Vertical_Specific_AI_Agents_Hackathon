@@ -1,20 +1,17 @@
-# from main import main_
-
-
-# query = "quelle est la longueur de 'déclinaison'"
-# print(main_(query))
 import requests
 
-def call_api(query):
-    url = "http://127.0.0.1:8000/run-agent/"
-    payload = {"query": query}
+# URL de l'API
+url = "http://localhost:8000/run-agent/"
 
-    response = requests.post(url, json=payload)
+# Les données à envoyer dans la requête
+data = {
+    "query": "envoie un email à Corentin dupuis darkk9172@gmail.com pour dire bonjour et ajoute le dans le crm"
+}
 
-    print(response)
+# Envoi de la requête POST
+response = requests.post(url, json=data, stream=True)
 
-    print(response.content)
-
-# query = "quelle est la longueur de 'déclinaison'"
-
-# call_api(query)
+# Affichage des étapes au fur et à mesure
+for chunk in response.iter_content(chunk_size=None):
+    if chunk:
+        print(chunk.decode("utf-8"))
