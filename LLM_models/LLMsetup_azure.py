@@ -2,10 +2,23 @@ import os
 from langchain_openai import AzureChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 from openai import AzureOpenAI
+from langchain_mistralai.chat_models import ChatMistralAI
+from langchain_mistralai import ChatMistralAI
+
+
 
 from dotenv import load_dotenv
 load_dotenv()
 
+def llm_mistral(temperature=0.7):
+    return ChatMistralAI(
+    model="mistral-large-latest",
+    temperature=0,
+    max_retries=2,
+    api_key=os.getenv("MISTRAL_API_KEY")
+    # other params...
+)
+# print(llm_mistral.invoke("salut"))
 def llm(temperature=0.7):
     return AzureChatOpenAI(
         model="gpt-4o",

@@ -1,7 +1,7 @@
 """ MAIN EXECUTION FILE"""
 
 from langchain_openai import ChatOpenAI
-from LLM_models.LLMsetup_azure import llm_new
+from LLM_models.LLMsetup_azure import llm_new ,llm_mistral
 from langchain.agents import tool
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.agents.format_scratchpad.openai_tools import (
@@ -16,7 +16,8 @@ from Tools.outlook import send_email
 from Tools.salesforce import add_contact
 from Tools.linkedin_axon import send_linkedin_msg
 from Tools.web_search import web_search
-llm = llm_new()
+# llm = llm_new()
+llm = llm_mistral()
 
 def run_agent(query,chat_history):
     tools = [add_contact,send_email,web_search,send_linkedin_msg]
@@ -67,7 +68,6 @@ def main_(query):
     chat_history = []
     result = run_agent(query,chat_history)
     return result
-
 
 
 
