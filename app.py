@@ -24,4 +24,4 @@ async def run_agent_endpoint(query: str = Body(..., embed=True)):
     return {"output": resp}
 
 # Run FastAPI with 'uvicorn' for local testing
-# Run the command: uvicorn fastapi_agent_runner:app --reload
+# Run the command: uvicorn app:app --reload

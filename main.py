@@ -53,7 +53,7 @@ def run_agent(query,chat_history):
     )
     
 
-    agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+    agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True, return_intermediate_steps=True)
 
 
     result = agent_executor.invoke({"input": query, "chat_history": chat_history})
