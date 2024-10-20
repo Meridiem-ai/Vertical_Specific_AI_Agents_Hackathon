@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run Agent UI</title>
+    <script>
+        async function callAgentAPI() {
+            const query = document.getElementById("queryInput").value;
+            const responseElement = document.getElementById("responseOutput");
+            responseElement.innerText = "Loading...";
+            
+            try {
+                const response = await fetch("http://127.0.0.1:8000/run-agent/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ query: query })
+                });
+                
+                const result = await response.json();
+                responseElement.innerText = result.output;
+            } catch (error) {
+                responseElement.innerText = "Error: " + error.message;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Run Agent API</h1>
+    <label for="queryInput">Enter Query:</label>
+    <input type="text" id="queryInput" placeholder="Type your query here...">
+    <button onclick="callAgentAPI()">Submit</button>
+    <h3>Response:</h3>
+    <pre id="responseOutput"></pre>
+</body>
+</html>
