@@ -24,3 +24,5 @@ fastapi
 uvicorn
 python-dotenv
 simple-salesforce
+langchain_mistralai
+mistralai
