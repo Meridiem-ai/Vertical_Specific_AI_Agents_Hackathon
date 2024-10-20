@@ -11,8 +11,10 @@ def call_api(query):
 
     response = requests.post(url, json=payload)
 
-    print(response.json())
+    print(response)
 
-query = "quelle est la longueur de 'déclinaison'"
+    print(response.content)
 
-call_api(query)
+# query = "quelle est la longueur de 'déclinaison'"
+
+# call_api(query)

@@ -12,12 +12,13 @@ from langchain.agents import AgentExecutor
 from langchain_core.prompts import MessagesPlaceholder
 from langchain_core.messages import AIMessage, HumanMessage
 from Tools.tool_template import get_word_length
+from Tools.outlook import send_email
 
 llm = llm_new()
 
 
 def run_agent(query,chat_history):
-    tools = [get_word_length]
+    tools = [get_word_length,send_email]
 
 
     MEMORY_KEY = "chat_history"
