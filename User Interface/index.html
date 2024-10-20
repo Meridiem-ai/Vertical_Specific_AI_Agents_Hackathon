@@ -20,46 +20,49 @@
         .container {
             background: rgba(255, 255, 255, 0.95);
             padding: 30px;
-            border-radius: 15px;
+            border-radius: 10px;
             box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.05);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
+            max-width: 700px;
+            width: 90%;
         }
         h1 {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
             font-weight: 500;
-            font-size: 1em;
+            font-size: 1.5em;
             color: #333;
         }
         h1 .highlight {
             display: block;
             margin-top: 10px;
             font-weight: 300;
-            font-size: 1.2em;
+            font-size: 1em;
             color: #555;
         }
         label {
             font-size: 1em;
             color: #555;
         }
-        input[type="text"] {
-            width: 100%;
-            max-width: 400px;
-            height: 50px;
-            overflow: auto;
-            padding: 10px;
+        textarea {
+            width: calc(100% - 20px);
+            min-height: 45px;
+            max-height: 150px;
+            overflow-y: auto;
+            padding: 15px;
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1em;
             resize: none;
+            line-height: 1.4em;
         }
         button {
             background-color: #007bff;
             color: #fff;
             border: none;
-            padding: 12px 25px;
+            padding: 10px 20px;
             font-size: 1em;
             border-radius: 5px;
             cursor: pointer;
@@ -69,14 +72,14 @@
             background-color: #0056b3;
         }
         #responseOutput {
-            margin-top: 20px;
+            margin-top: 15px;
             background: rgba(255, 255, 255, 0.95);
             padding: 20px;
             border-radius: 10px;
             overflow: auto;
             font-size: 1em;
-            max-height: 300px;
-            max-width: 600px;
+            max-height: 200px;
+            max-width: 100%;
             width: 100%;
             color: #333;
         }
@@ -90,7 +93,7 @@
     </style>
     <script>
         async function callAgentAPI() {
-            const query = document.getElementById("queryInput").value;
+            const queryInput = document.getElementById("queryInput");
             const responseElement = document.getElementById("responseOutput");
             responseElement.innerText = "Loading...";
             responseElement.classList.remove("fade-in");
@@ -101,7 +104,7 @@
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ query: query })
+                    body: JSON.stringify({ query: queryInput.value })
                 });
                 
                 const result = await response.json();
@@ -112,6 +115,15 @@
                 responseElement.classList.add("fade-in");
             }
         }
+
+        // Automatically adjust the height of the textarea based on its content
+        document.addEventListener("DOMContentLoaded", function() {
+            const queryInput = document.getElementById("queryInput");
+            queryInput.addEventListener("input", function() {
+                queryInput.style.height = "45px"; // Reset height
+                queryInput.style.height = Math.min(queryInput.scrollHeight, 150) + "px"; // Set new height, with max limit
+            });
+        });
     </script>
 </head>
 <body>
@@ -120,7 +132,7 @@
             <span class="highlight"><span style="font-size: 0.9em;">I can help with LinkedIn messages, emails, finding information, and adding contacts to the CRM.</span><br><span style="font-size: 0.9em;">How can I assist you?</span></span>
         </h1>
         <label for="queryInput">Enter Query:</label>
-        <textarea id="queryInput" placeholder="Type your request here..." rows="4" style="width: 100%; max-width: 400px; overflow: auto; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 1em; resize: vertical;"></textarea>
+        <textarea id="queryInput" placeholder="Type your request here..." rows="2"></textarea>
         <button onclick="callAgentAPI()">Submit</button>
         <h3>Response:</h3>
         <pre id="responseOutput"></pre>

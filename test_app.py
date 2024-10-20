@@ -15,6 +15,6 @@ def call_api(query):
 
     print(response.content)
 
-# query = "envoie un message à Cyril Thielemans pour dire bonjour"
+query = "envoie un message à Cyril Thielemans pour dire bonjour"
 
-# call_api(query)
+call_api(query)
