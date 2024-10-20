@@ -67,4 +67,3 @@ def send_linkedin_msg(person_name: str, message: str) -> int:
     else:
         return "the message was not succesfully send, continue on"
     
-print(send_linkedin_msg("Maxime Schifflers", "Hi how are you?"))
