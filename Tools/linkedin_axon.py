@@ -9,7 +9,7 @@ load_dotenv()
 
 # message = "Hello Cyril this is a test"
 
-@tool
+#@tool
 def send_linkedin_msg(person_name: str, message: str) -> int:
     """Sends a message to a person on LinkedIn and returns a status message.
 
@@ -35,7 +35,7 @@ def send_linkedin_msg(person_name: str, message: str) -> int:
 
     response1 = requests.request("GET", url_listconv, headers=headers1)
     conversations_link = conversations_link = json.loads(response1.text)
-
+    x = True
     # Loop through all conversations
     for conversation in conversations_link.get("conversations", []):
         # Loop through all attendees in each conversation
@@ -45,9 +45,10 @@ def send_linkedin_msg(person_name: str, message: str) -> int:
                 print("\nfound it\n")
                 # Return the conversation ID if a match is found
                 conversationId = conversation.get("id")
+                x = False
 
-    if not conversationId:
-        return "the message was not succesfully send, continue on"
+    if x:
+        return "The name of the person was not written succesfully by the user, because of that you cannot send a message on Linkedin to the person, ask the user for the exact name on LinkedIn of the person"
 
 
     payload = {
@@ -67,3 +68,4 @@ def send_linkedin_msg(person_name: str, message: str) -> int:
     else:
         return "the message was not succesfully send, continue on"
     
+print(send_linkedin_msg("choucrout","sfqfdfs"))
