@@ -13,12 +13,14 @@ from langchain_core.prompts import MessagesPlaceholder
 from langchain_core.messages import AIMessage, HumanMessage
 from Tools.tool_template import get_word_length
 from Tools.outlook import send_email
-
+from Tools.salesforce import add_contact
+from Tools.linkedin_axon import send_linkedin_msg
+from Tools.web_search import web_search
 llm = llm_new()
 
 
 def run_agent(query,chat_history):
-    tools = [get_word_length,send_email]
+    tools = [add_contact,send_email,web_search,send_linkedin_msg]
 
 
     MEMORY_KEY = "chat_history"

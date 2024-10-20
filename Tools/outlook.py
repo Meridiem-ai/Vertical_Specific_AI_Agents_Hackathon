@@ -80,4 +80,3 @@ def send_email(to: str, subject: str, body: str) -> str:
 #     'body': "This is the body of the test email."
 # }
 
-# print(send_email(**kwargs))

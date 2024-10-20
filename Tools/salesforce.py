@@ -11,7 +11,7 @@ load_dotenv()
 def add_contact(first_name: str, last_name: str, title: str = "", assistant_name: str = "", 
                 assistant_phone: str = "", department: str = "", description: str = "", 
                 email: str = "", phone: str = "", other_phone: str = "", 
-                birthdate: str = "2000-01-01") -> str:
+                birthdate: str = "") -> str:
     """
     Adds a new contact in Salesforce.
 
@@ -62,3 +62,19 @@ def add_contact(first_name: str, last_name: str, title: str = "", assistant_name
     except Exception as e:
         logging.error(f"ERROR in function add_contact: {e}")
         return f"ERROR: Could not add contact. Details: {e}"
+
+# result = add_contact(
+#     first_name="John",
+#     last_name="Doe",
+#     title="Software Engineer",
+#     assistant_name="Jane Doe",
+#     assistant_phone="555-1234",
+#     department="Engineering",
+#     description="Met at a networking event.",
+#     email="john.doe@example.com",
+#     phone="555-5678",
+#     other_phone="555-8765",
+#     birthdate="1985-06-15"
+# )
+
+# print(result) 
